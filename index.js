@@ -775,7 +775,6 @@
 	app.get('/leaveRoom', function(req, res)
 	{
 		req.session.destroy();
-		req.session = null;
 		res.json("DONE");
 	});
 
