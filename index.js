@@ -16,7 +16,8 @@
 	var checkSlythUser = 0;
 	var express = require('express');
 	var app = express();
-	var io = require('socket.io')(app,{});
+	var http = require('http').Server(app);
+	var io = require('socket.io')(http,{});
 	var bodyParser = require('body-parser');
 	var cookieParser = require('cookie-parser');
 	var compass = require('compass');
