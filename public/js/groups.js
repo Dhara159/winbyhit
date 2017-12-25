@@ -1,4 +1,4 @@
-	var socket = io.connect('http://localhost:3000');
+	var socket = io.connect('https://secret-sands-26285.herokuapp.com');
 	var modal = document.getElementById('myModal');
 	var modal1 = document.getElementById('myModal1');
 	var btn = document.getElementsByClassName("common");

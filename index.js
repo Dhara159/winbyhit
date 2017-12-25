@@ -1,3 +1,4 @@
+	const port = process.env.PORT || 3000;
 	var gryfUser = 0;
 	var huffleUser = 0;
 	var slythUser = 0;
@@ -777,7 +778,7 @@
 		req.session.destroy();
 		res.json("DONE");
 	});
-	const port = process.env.PORT || 3000
+	
 	http.listen(port, function()
 	{
 		console.log('listening on ' + port);
