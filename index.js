@@ -50,29 +50,11 @@
 		database: 'sql12212529'
 	});
 
-	var adminConnection = mysql.createConnection({
-		host: 'sql12.freemysqlhosting.net',
-		user: 'sql12212529',
-		password: 'QgKD2HpMZm',
-		database: 'sql12212529'
-	});
-
 	connection.connect(function(err)
 	{
 		if (!err) 
 		{
 			console.log("database is connected");
-		}
-		else
-		{
-			console.log("Error connecting database");
-		}
-	});
-
-	adminConnection.connect(function(err)
-	{
-		if (!err) 
-		{
 		}
 		else
 		{
@@ -618,7 +600,7 @@
 	{
 		var username = req.body.username;
 		var password = md5(req.body.password);
-		adminConnection.query("SELECT * FROM admin WHERE username = ? AND password = ?", [username, password], function(err, rows, fields)
+		connection.query("SELECT * FROM admin WHERE username = ? AND password = ?", [username, password], function(err, rows, fields)
 		{
 			var result = rows.length;
 			if (result != 0) 
