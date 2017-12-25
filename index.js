@@ -43,17 +43,17 @@
 	});
 
 	var connection = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: '',
-		database: 'winbyhit'
+		host: 'sql12.freemysqlhosting.net:3306',
+		user: 'sql12212529',
+		password: 'QgKD2HpMZm',
+		database: 'sql12212529'
 	});
 
 	var adminConnection = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		password: '',
-		database: 'adminWinbyhit'
+		host: 'sql12.freemysqlhosting.net:3306',
+		user: 'sql12212529',
+		password: 'QgKD2HpMZm',
+		database: 'sql12212529'
 	});
 
 	connection.connect(function(err)
