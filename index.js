@@ -32,12 +32,6 @@
 
 	app.use(compass({ cwd: __dirname + 'css' }));
 	app.use("/public", express.static(__dirname + '/public'));
-	// app.use("/views", express.static(__dirname + '/views'));
-	// app.use("/fonts", express.static(__dirname + '/fonts'));
-	// app.use("/images", express.static(__dirname + '/images'));
-	// app.use("/audio", express.static(__dirname + '/audio'));
-	// app.use("/css", express.static(__dirname + '/css'));
-	// app.use("/js", express.static(__dirname + '/js'));
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true}));
 	app.use(cookieParser());
@@ -51,14 +45,14 @@
 	var connection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'Dhara@1598753',
+		password: '',
 		database: 'winbyhit'
 	});
 
 	var adminConnection = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'Dhara@1598753',
+		password: '',
 		database: 'adminWinbyhit'
 	});
 
