@@ -110,57 +110,57 @@
 		function bann(id)
 		{
 			connection.query("Update users SET banned = ? WHERE id = ?", [1, id], function(err, rows, fields)
-    		{	
-    			if(rows.affectedRows > 0)
-    			{
-    				socket.emit('refresh', '');
-    			}
-    			else
-    			{
-    				console.log(err);
-    			}
-    		});
+    			{	
+	    			if(rows.affectedRows > 0)
+	    			{
+	    				socket.emit('refresh', '');
+	    			}
+	    			else
+	    			{
+	    				console.log(err);
+	    			}
+	    		});
 		}
-
+	
 		function reset(resetHouse)
 		{
 			if (resetHouse == "gryffindor") 
-    		{
-    			gryfUser = 0;
-    			gryfCount = 10;
-    			gryfScoreArray = [];
-    			checkGryfUser = 0;
-    			socket.emit('group', '/groups');
-    		}
-    		if (resetHouse == "hufflepuff") 
-    		{
-    			huffleUser = 0;
+    			{
+	    			gryfUser = 0;
+	    			gryfCount = 10;
+	    			gryfScoreArray = [];
+	    			checkGryfUser = 0;
+	    			socket.emit('group', '/groups');
+	    		}
+	    		if (resetHouse == "hufflepuff") 
+	    		{
+    				huffleUser = 0;
 				huffCount = 10;
 				huffleScoreArray = [];
 				checkHuffleUser = 0;
-    			socket.emit('group', '/groups');	
-    		}
-    		if (resetHouse == "slytherin") 
-    		{	
-    			slythUser = 0;
+    				socket.emit('group', '/groups');	
+    			}
+    			if (resetHouse == "slytherin") 
+    			{	
+	    			slythUser = 0;
 				slythCount = 10;
 				slythScoreArray = [];
 				checkSlythUser = 0;
-    			socket.emit('group', '/groups');
-    		}
-    		if (resetHouse == "ravenclaw") 
-    		{
-    			ravenUser = 0;
+    				socket.emit('group', '/groups');
+    			}
+    			if (resetHouse == "ravenclaw") 
+    			{
+	    			ravenUser = 0;
 				ravenCount = 10;
 				ravenScoreArray = [];
 				checkRavenUser = 0;
-    			socket.emit('group', '/groups');
-    		}
+	    			socket.emit('group', '/groups');
+	    		}
 		}
 
 		function week(username)
-    	{
-    		var today = new Date();
+    		{
+    			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 			var weekday = today.setDate(today.getDate() - 7);
 			var oldday = new Date(weekday);
@@ -170,9 +170,9 @@
 			{
 				socket.emit('setWeekScore', rows[0].total);
 			});
-    	}
+    		}
 
-    	function month(username)
+    		function month(username)
 		{
 			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -187,103 +187,103 @@
 		}
 
 		function gryfCreate(dataRoom1)
-    	{
-    		if (gryfUser < 5) 
     		{
-	    		var room1 = dataRoom1.house;
-    			var roomUser = dataRoom1.username;
-	    		socket.join(room1);
-	    		var playingData = {roomUser: roomUser, room: room1};
-	    		updatePlaying(playingData);
-	    		gryfUser = gryfUser + 1;
-				checkGryfUser = gryfUser;
-    			if (gryfUser == 1) 
+    			if (gryfUser < 5) 
     			{
-		    		setInterval(function()
+		    		var room1 = dataRoom1.house;
+	    			var roomUser = dataRoom1.username;
+		    		socket.join(room1);
+		    		var playingData = {roomUser: roomUser, room: room1};
+		    		updatePlaying(playingData);
+		    		gryfUser = gryfUser + 1;
+				checkGryfUser = gryfUser;
+    				if (gryfUser == 1) 
+    				{
+			    		setInterval(function()
 					{
 						gryfCounter(room1);
 					},1000);
-    			}
-    		}    	
-	    	else
-    		{
-	    		gameFailed(room1);
+    				}
+    			}    	
+	    		else
+    			{
+		    		gameFailed(room1);
+	    		}
     		}
-    	}
 
-    	function huffCreate(dataRoom2)
-	    {
-	    	if (huffleUser < 5) 
+    		function huffCreate(dataRoom2)
 	    	{
-	    		var room2 = dataRoom2.house;
-	    		var roomUser = dataRoom2.username;
-	    		socket.join(room2);
-	    		var playingData = {roomUser: roomUser, room: room2};
-	    		updatePlaying(playingData);
-	    		huffleUser = huffleUser + 1;
-	    		checkHuffleUser = huffleUser;
-	    		if (huffleUser == 1) 
-	    		{
-		    		setInterval(function()
+		    	if (huffleUser < 5) 
+		    	{
+		    		var room2 = dataRoom2.house;
+		    		var roomUser = dataRoom2.username;
+		    		socket.join(room2);
+		    		var playingData = {roomUser: roomUser, room: room2};
+		    		updatePlaying(playingData);
+		    		huffleUser = huffleUser + 1;
+		    		checkHuffleUser = huffleUser;
+		    		if (huffleUser == 1) 
+		    		{
+			    		setInterval(function()
 					{
 						huffCounter(room2);
 					},1000);
-	    		}
-	    	}
-	    	else
-	    	{
-	    		gameFailed(room2);
-	    	}
+		    		}
+		    	}
+		    	else
+		    	{
+		    		gameFailed(room2);
+		    	}
 		}
 
 		function slythCreate(dataRoom3)
-	    {
-	    	if (slythUser < 5) 
 	    	{
-	    		var room3 = dataRoom3.house;
-	    		var roomUser = dataRoom3.username;
-	    		socket.join(room3);
-	    		var playingDate = {roomUser: roomUser, room: room3};
-	    		updatePlaying(playingDate);
-	    		slythUser = slythUser + 1;
-	    		checkSlythUser = slythUser;
-	    		if (slythUser == 1) 
-	    		{
-		    		setInterval(function()
+		    	if (slythUser < 5) 
+		    	{
+		    		var room3 = dataRoom3.house;
+		    		var roomUser = dataRoom3.username;
+		    		socket.join(room3);
+		    		var playingDate = {roomUser: roomUser, room: room3};
+		    		updatePlaying(playingDate);
+		    		slythUser = slythUser + 1;
+		    		checkSlythUser = slythUser;
+		    		if (slythUser == 1) 
+		    		{
+			    		setInterval(function()
 					{
 						slythCounter(room3);
 					},1000);    		
+	    			}
 	    		}
-	    	}
-	    	else
-	    	{
-	    		gameFailed(room3);
-	    	}
+	    		else
+	    		{
+		    		gameFailed(room3);
+		    	}
 		}
 
 		function ravenCreate(dataRoom4)
-	    {
-	    	if (ravenUser < 5) 
 	    	{
-	    		var room4 = dataRoom4.house;
-	    		var roomUser = dataRoom4.username;
-	    		socket.join(room4);
-	    		var playingData = {roomUser: roomUser, room: room4};
-	    		updatePlaying(playingData);
-	    		ravenUser = ravenUser + 1;
-	    		checkRavenUser = ravenUser;
-	    		if (ravenUser == 1) 
-	    		{
-	    			setInterval(function()
+		    	if (ravenUser < 5) 
+		    	{
+		    		var room4 = dataRoom4.house;
+		    		var roomUser = dataRoom4.username;
+		    		socket.join(room4);
+		    		var playingData = {roomUser: roomUser, room: room4};
+		    		updatePlaying(playingData);
+		    		ravenUser = ravenUser + 1;
+		    		checkRavenUser = ravenUser;
+		    		if (ravenUser == 1) 
+		    		{
+	    				setInterval(function()
 					{
-		    			ravenCounter(room4);
+		    				ravenCounter(room4);
 					},1000);
-	    		}
-	    	}
-	    	else
-	    	{
-	    		gameFailed(room4);
-	    	}
+				}
+			}
+			else
+			{
+				gameFailed(room4);
+			}
 		}
 
 		function updatePlaying(playingData)
@@ -507,16 +507,11 @@
 						connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [username.username, weekdate.toString(), date.toString()], function(err, rows, fields)
 						{							
 							var weekTotal = rows[0].total;
-							console.log(typeof rows[0].total);
-							console.log(rows);
 							connection.query("SELECT sum(score) as monthTotal FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [username.username, monthdate.toString(), date.toString()], function(err, rows, fields)
 							{
 								var monthTotal = rows[0].monthTotal;
-								console.log(typeof rows[0].monthTotal);
-								console.log(rows)
-								connection.query("Update `toppers` SET week = ?,month = ? WHERE username = ?", [parseInt(weekTotal), parseInt(monthTotal), username.username], function(err, rows, fields){
-									console.log(rows.affectedRows);
-									console.log(err);
+								connection.query("Update `toppers` SET week = ?,month = ? WHERE username = ?", [parseInt(weekTotal), parseInt(monthTotal), username.username], function(err, rows, fields)
+								{
 									connection.query("DELETE from playing WHERE house = ?",[room], function(err, rows, fields)
 									{
 										io.in(room).emit(updateScore.goto, winner);
