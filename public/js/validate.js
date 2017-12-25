@@ -17,7 +17,11 @@
 					}
 					else
 					{
-						window.location.href = '/signup/'+username;
+						socket.emit("signup", username);
+						socket.on("next", function(login)
+						{
+							socket.emit('login',username);
+						});
 					}
 				}
 			});
@@ -39,7 +43,6 @@
 				{
 					if (response == "YES") 
 					{
-						// window.location.href = '/login/'+username;
 						socket.emit('login',username);
 						socket.on('afterLogin', function(afterLogin) 
 						{	
