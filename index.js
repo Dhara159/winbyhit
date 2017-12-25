@@ -82,7 +82,6 @@
 
 	io.sockets.on('connection', function(socket)
 	{
-		socket.on("signup", function(username){ signup(username) });
 		socket.on('login', function(username){ login(username) });
 		socket.on('bann', function(id){ bann(id) });
 		socket.on('reset', function(resetHouse){ reset(resetHouse) });
@@ -101,23 +100,6 @@
 			socket.handshake.session.save();
 			var afterLogin = '/groups';
 			socket.emit('afterLogin', afterLogin);
-		}
-
-		function signup(username)
-		{
-			connection.query("INSERT INTO users(username) VALUES (?)", [username], function(err, rows, fields)
-			{
-				var result = rows.affectedRows;
-				if (!err) 
-				{
-					if (result != 0) 
-					{
-						connection.query("INSERT INTO toppers(username, week, month) VALUES (?,?,?)", [username, 0, 0], function(err, rows, fields){
-							socket.emit('next', "login");
-						});	
-					}
-				}
-			});
 		}
 
 		function leaveGame(leaveData)
@@ -581,7 +563,28 @@
 	});
 
 	app.get('/signup/:username', function(req, res){
-		
+		var username = req.params.username;
+		connection.query("INSERT INTO users(username) VALUES (?)", [username], function(err, rows, fields)
+		{
+			var result = rows.affectedRows;
+			if (!err) 
+			{
+				if (result != 0) 
+				{
+					connection.query("INSERT INTO toppers(username, week, month) VALUES (?,?,?)", [username, 0, 0], function(err, rows, fields){
+						res.redirect('/');
+					});
+				}
+				else
+				{
+					res.send("Data is not inserted!");
+				}
+			}
+			else
+			{
+				res.send(err);
+			}
+		});
 	});
 
 	app.post('/validateInput', function(req, res)
