@@ -777,8 +777,8 @@
 		req.session.destroy();
 		res.json("DONE");
 	});
-
-	http.listen(3000, function()
+	const port = process.env.PORT || 3000
+	app.listen(port, function()
 	{
-		console.log('listening on *:3000');
+		console.log('listening on ' + port);
 	});
