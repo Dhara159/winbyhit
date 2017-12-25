@@ -1,0 +1,98 @@
+	<!DOCTYPE html>
+	<html>
+	 	<head>
+	  		<title>Select the group</title>
+	  		<meta charset="UTF-8">
+	  		<link rel="stylesheet" type="text/css" href="public/css/style.css">
+	  		<link rel="stylesheet" type="text/css" href="public/css/modal.css">
+	  		<link rel="stylesheet" type="text/css" href="public/css/carousel.css">
+	  		<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
+	  		<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	  	</head>
+	  	<body>
+		  	<div>
+	  			<nav class="navbar navbar-default">
+		  			<div class="navbar-header">
+	  					<a class="navbar-brand" href="#">WinbyHit</a>
+	  				</div>
+	  				<div class="navbar-header">
+		  				<a class="navbar-brand" id="navuser" href="#"></a>
+	  				</div>
+	  				<div class="navbar-header">
+		  				<a class="navbar-brand" id="navScore" href="#"></a>
+	  				</div>
+	  				<button style="margin-right: 20px" id="weekTopper" class="btn btn-danger navbar-btn pull-right ">Week Toppers</button>
+	  				<button style="margin-right: 20px" id="monthTopper" class="btn btn-danger navbar-btn pull-right">Month Toppers</button>    
+	  				<button style="margin-right: 20px" id="week" class="btn btn-danger navbar-btn pull-right ">Weekly Score</button>
+	  				<button style="margin-right: 20px" id="month" class="btn btn-danger navbar-btn pull-right">Monthly Score</button>       
+	  			</nav>
+	  			<div id="mycarousel" class="carousel slide" data-ride="carousel">
+		  			<div class="carousel-inner" role="listbox">
+	  					<div class="item active">
+		  					<img src="public/images/Image__gryffindor-wallpaper-9.jpg" alt="Gryffindor">
+	  						<div class="carousel-caption">
+		  						<a href="#" id="gryffindor" class="common"><h3 class="gryffindor">Gryffindor</h3></a>
+	  						</div>
+	  					</div>
+	  					<div class="item">
+		  					<img src="public/images/Image__hufflpuff-wallpaper-24.jpg" alt="Hufflepuff">
+	  						<div class="carousel-caption">
+		  						<a href="#" id="hufflepuff" class="common"><h3 class="hufflepuff">Hufflepuff</h3></a>
+	  						</div>
+	  					</div>
+	  					<div class="item">
+		  					<img src="public/images/Image__Slytherin-WLPs-MA-066.jpg" alt="Slytherin">
+	  						<div class="carousel-caption">
+		  						<a href="#" id="slytherin" class="common"><h3 class="slytherin">Slytherin</h3></a>
+	  						</div>
+	  					</div>
+	  					<div class="item">
+		  					<img src="public/images/Image__ravenclaw-wallpaper-107.jpg" alt="Ravenclaw">
+	  						<div class="carousel-caption">
+		  						<a href="#" id="ravenclaw" class="common"><h3 class="ravenclaw">Ravenclaw</h3></a>
+	  							<input type="hidden" id="username">
+	  						</div>
+	  					</div>
+	  				</div>
+
+	  				<a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+	  					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	  					<span class="sr-only">Previous</span>
+	  				</a>
+	  				<a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+		  				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	  					<span class="sr-only">Next</span>
+	  				</a>
+	  			</div>	  			
+	  			<div id="myModal" class="modal">
+		  			<div class="modal-content">
+	  					<span class="close">&times;</span>
+	  					<p>Waiting for users...</p>
+	  					<p id="timer"></p>
+	  				</div>
+	  			</div>
+
+	  			<div id="myModal1" class="modal">
+	  				<div class="modal-content">  
+		  				<div class="modal-body">
+	  						<table id="classTable" class="table table-bordered">
+		  						<thead>
+	  								<th>#</th>
+	  								<th>Username</th>
+	  								<th>Score</th>
+	  							</thead>
+	  							<tbody>
+	  							</tbody>
+	  						</table>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  		<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	  		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
+	  		<script src="public/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	  		<script type="text/javascript" src="public/js/carousel.js"></script>
+	  		<script src="/socket.io/socket.io.js"></script>
+	  		<script src="public/js/groups.js"></script>
+	  	</body>
+	</html>

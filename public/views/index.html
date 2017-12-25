@@ -1,0 +1,32 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>WinByHit</title>
+	<link rel="stylesheet" type="text/css" href="public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<script src="/socket.io/socket.io.js"></script>
+	</head>
+	<body onload="setTimeout(function(){$('#loader_img').hide()}, 5000);">
+	<div>
+		<form method="post" action="/">
+			<li class="login page">
+				<div id="loader_img"><img class="loader" src="public/images/c2676c2f5758e33cc7da2a46ed5e0432.jpg"></div>
+				<div class="form renderLoader">
+					<h3 class="title">What's your name, Wizard/Witch?</h3>
+					<input class="usernameInput" id="username" name="username" type="text" maxlength="14" /><br><br>
+					<input type="button" name="getin" class="btn btn-secondary btn-lg" onclick="validateLogin(document.getElementById('username').value)" value="Login" required>
+					<input type="button" name="getin" class="btn btn-danger btn-lg" onclick="validateSubmit(document.getElementById('username').value)" value="SignUp" required>
+					<h3 class="title" id="err"></h3>
+				</div>
+			</li>
+		</form>
+	</div>
+	<script type="text/javascript" src="public/js/validate.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var socket = io();
+	</script>
+	</body>
+	</html>

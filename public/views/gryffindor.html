@@ -1,0 +1,67 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Select the group</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="public/css/modal.css">
+		<link rel="stylesheet" type="text/css" href="public/css/gryffindor.css">
+		<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+		<body>
+			<div>
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">WinbyHit</a>
+					</div>
+					<div class="navbar-header">
+						<a class="navbar-brand" id="navuser" href="#"></a>
+					</div>
+					<div class="navbar-header">
+						<a class="navbar-brand" id="navScore" href="#"></a>
+					</div>
+					<button style="margin-right: 20px" id="week" class="btn btn-danger navbar-btn pull-right ">Week Toppers</button>
+					<button style="margin-right: 20px" id="month" class="btn btn-danger navbar-btn pull-right">Month Toppers</button>    
+					<button style="margin-right: 20px" id="week" class="btn btn-danger navbar-btn pull-right ">Weekly Score</button>
+					<button style="margin-right: 20px" id="month" class="btn btn-danger navbar-btn pull-right">Monthly Score</button>    
+				</nav>
+				<div id="mycarousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="item active parent">
+							<img src="public/images/grf-bg.jpg" alt="Gryffindor">
+							<div class="carousel-caption">
+								<div id="timer"></div>
+								<button id="hit" type="button" class="btn btn-lg grf-btn"><b>Hit Me</b></button>
+								<div id="myModal" class="modal">
+									<div class="modal-content">
+										<span class="close">&times;</span>
+										<p style="font-size: 100px;color: #ae0001;">Your Score:</p>
+										<p id="score"></p>
+										<input type="hidden" id="username">
+									</div>
+								</div>
+								<div id="myModal1" class="modal">
+									<div class="modal-content">
+										<div class="modal-body">
+											<span class="close">&times;</span>
+											<p id="winner" style="font-size: 100px;color: #ae0001;"></p>
+											<p id="winningScore"></p>	
+										</div>
+										<div class="modal-footer">
+											<button id="leave" type="button" class="btn btn-danger" data-dismiss="modal">Leave</button>
+											<button id="reset" type="button" class="btn btn-primary" data-dismiss="modal">Restart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="/socket.io/socket.io.js"></script>
+			<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
+			<script src="public/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="public/js/gryfTimer.js"></script>
+			<script type="text/javascript" src="public/js/carousel.js"></script>
+		</body>
+	</html>

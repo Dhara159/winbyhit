@@ -1,0 +1,43 @@
+.full-screen 
+{
+  background-size: cover;
+  background-position: 58%;
+  background-repeat: no-repeat;
+}
+
+.grf-btn
+{
+  	padding-left: 90px !important;
+  	padding-right: 90px !important;
+  	padding-top: 30px !important;
+  	padding-bottom: 30px !important;
+  	font-size: 50px !important;
+  	margin-bottom: 180px !important;
+  	margin-left: -370px !important;
+  	border-radius: 20px !important;
+  	background: #d3a625;
+	color: #ae0001 !important;
+}
+
+#timer
+{
+	font-size: 250px;
+	color: #d3a625;
+	margin-left: -370px !important;
+	margin-bottom: 200px !important;
+}
+
+#score
+{
+	font-size: 250px;
+	color: #ae0001;
+  text-align: center;
+}
+
+#winningScore
+{
+  font-size: 100px;
+  color: #ae0001;
+  text-align: center;
+}
+

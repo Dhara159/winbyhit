@@ -1,0 +1,30 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>WinByHit</title>
+	<link rel="stylesheet" type="text/css" href="public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<script src="/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+	<div>
+		<form method="post" action="/">
+			<li class="login page">
+				<div class="form renderLoader">
+					<input class="usernameInput" id="username" name="username" type="text" maxlength="14" placeholder="Username" /><br><br>
+					<input class="usernameInput" id="password" name="password" type="password" maxlength="15" placeholder="Password" /><br><br>
+					<input type="button" name="getin" class="btn btn-secondary btn-lg" onclick="validateAdminLogin(document.getElementById('username').value,document.getElementById('password').value)" value="Login" required>
+					<h3 class="title" id="err"></h3>
+				</div>
+			</li>
+		</form>
+	</div>
+	<script type="text/javascript" src="public/js/adminvalidate.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var socket = io();
+	</script>
+	</body>
+	</html>

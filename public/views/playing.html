@@ -1,0 +1,72 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>WinByHit Playing</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">WinbyHit</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="/main">Users</a></li>
+					<li class="active"><a href="/playing">Players</a></li>
+				</ul>
+				<button type="button" class="btn btn-primary pull-right" id="logout">Logout</button>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="table-responsive">          
+				<table class="table">
+					<tr>
+						<th>#</th>
+						<th>Username</th>
+						<th>UserId</th>
+						<th>House</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			var socket = io.connect('http://localhost:3000');
+			$(document).ready(function() 
+			{
+				$.ajax
+				({
+					type: 'get',
+					url: '/getPlayers',
+					success: function(data) 
+					{
+						var tr;
+						for (var i = 0; i < data.length; i++) 
+						{
+							tr = $('<tr/>');
+							tr.append("<td>" + data[i].id + "</td>");
+							tr.append("<td>" + data[i].username + "</td>");
+							tr.append("<td>" + data[i].fid + "</td>");
+							tr.append("<td>" + data[i].house + "</td>");
+							$('table').append(tr);
+						}
+					}
+				});
+			});
+
+			$('#logout').click(function()
+			{
+				socket.emit('logout', '');
+				socket.on('back', function(back)
+				{
+					window.location.href = back;
+				});
+			});
+
+		</script>
+	</body>
+	</html>

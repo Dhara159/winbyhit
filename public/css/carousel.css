@@ -1,0 +1,43 @@
+h3 
+{
+  display: inline-block;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background: #B9121B;
+  font-size: 50px !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.full-screen 
+{
+  background-size: cover;
+  background-position: 58%;
+  background-repeat: no-repeat;
+}
+
+.gryffindor
+{
+	background: #d3a625;
+	color: #ae0001;
+}
+
+.hufflepuff
+{
+	background: #372e29;
+	color: #ecb939;
+}
+
+.slytherin
+{
+	background: #aaaaaa;
+	color: #2a623d;
+}
+
+.ravenclaw
+{
+	background: #946b2d;
+	color: #0e1a40;
+}
