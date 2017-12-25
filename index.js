@@ -551,7 +551,7 @@
 
 	app.get('/groups', function(req, res)
 	{
-		if (req.session.username != "") 
+		if (req.session.username != "" || req.session.username == undefined) 
 		{
 			res.sendFile(__dirname + '/public/views/groups.html');
 		}
