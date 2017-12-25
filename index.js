@@ -43,14 +43,14 @@
 	});
 
 	var connection = mysql.createConnection({
-		host: 'sql12.freemysqlhosting.net:3306',
+		host: 'sql12.freemysqlhosting.net',
 		user: 'sql12212529',
 		password: 'QgKD2HpMZm',
 		database: 'sql12212529'
 	});
 
 	var adminConnection = mysql.createConnection({
-		host: 'sql12.freemysqlhosting.net:3306',
+		host: 'sql12.freemysqlhosting.net',
 		user: 'sql12212529',
 		password: 'QgKD2HpMZm',
 		database: 'sql12212529'
