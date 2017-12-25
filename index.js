@@ -110,57 +110,57 @@
 		function bann(id)
 		{
 			connection.query("Update users SET banned = ? WHERE id = ?", [1, id], function(err, rows, fields)
-    			{	
-	    			if(rows.affectedRows > 0)
-	    			{
-	    				socket.emit('refresh', '');
-	    			}
-	    			else
-	    			{
-	    				console.log(err);
-	    			}
-	    		});
+    		{	
+		    	if(rows.affectedRows > 0)
+		    	{
+		    		socket.emit('refresh', '');
+		    	}
+		    	else
+		    	{
+		    		console.log(err);
+		    	}
+		    });
 		}
 	
 		function reset(resetHouse)
 		{
 			if (resetHouse == "gryffindor") 
-    			{
-	    			gryfUser = 0;
-	    			gryfCount = 10;
-	    			gryfScoreArray = [];
-	    			checkGryfUser = 0;
-	    			socket.emit('group', '/groups');
-	    		}
-	    		if (resetHouse == "hufflepuff") 
-	    		{
-    				huffleUser = 0;
+    		{
+	    		gryfUser = 0;
+	    		gryfCount = 10;
+	    		gryfScoreArray = [];
+	    		checkGryfUser = 0;
+	    		socket.emit('group', '/groups');
+	    	}
+	    	if (resetHouse == "hufflepuff") 
+	    	{
+    			huffleUser = 0;
 				huffCount = 10;
 				huffleScoreArray = [];
 				checkHuffleUser = 0;
-    				socket.emit('group', '/groups');	
-    			}
-    			if (resetHouse == "slytherin") 
-    			{	
-	    			slythUser = 0;
+    			socket.emit('group', '/groups');	
+    		}
+    		if (resetHouse == "slytherin") 
+    		{	
+	    		slythUser = 0;
 				slythCount = 10;
 				slythScoreArray = [];
 				checkSlythUser = 0;
-    				socket.emit('group', '/groups');
-    			}
-    			if (resetHouse == "ravenclaw") 
-    			{
-	    			ravenUser = 0;
+    			socket.emit('group', '/groups');
+    		}
+    		if (resetHouse == "ravenclaw") 
+    		{
+	    		ravenUser = 0;
 				ravenCount = 10;
 				ravenScoreArray = [];
 				checkRavenUser = 0;
-	    			socket.emit('group', '/groups');
-	    		}
+	    		socket.emit('group', '/groups');
+	    	}
 		}
 
 		function week(username)
-    		{
-    			var today = new Date();
+    	{
+    		var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 			var weekday = today.setDate(today.getDate() - 7);
 			var oldday = new Date(weekday);
@@ -170,9 +170,9 @@
 			{
 				socket.emit('setWeekScore', rows[0].total);
 			});
-    		}
+    	}
 
-    		function month(username)
+    	function month(username)
 		{
 			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -187,96 +187,96 @@
 		}
 
 		function gryfCreate(dataRoom1)
+    	{
+    		if (gryfUser < 5) 
     		{
-    			if (gryfUser < 5) 
-    			{
-		    		var room1 = dataRoom1.house;
-	    			var roomUser = dataRoom1.username;
-		    		socket.join(room1);
-		    		var playingData = {roomUser: roomUser, room: room1};
-		    		updatePlaying(playingData);
-		    		gryfUser = gryfUser + 1;
+		    	var room1 = dataRoom1.house;
+	    		var roomUser = dataRoom1.username;
+		    	socket.join(room1);
+		    	var playingData = {roomUser: roomUser, room: room1};
+		    	updatePlaying(playingData);
+		    	gryfUser = gryfUser + 1;
 				checkGryfUser = gryfUser;
-    				if (gryfUser == 1) 
-    				{
-			    		setInterval(function()
+    			if (gryfUser == 1) 
+    			{
+			    	setInterval(function()
 					{
 						gryfCounter(room1);
 					},1000);
-    				}
-    			}    	
-	    		else
-    			{
-		    		gameFailed(room1);
-	    		}
-    		}
+    			}
+    		}    	
+	    	else
+    		{
+		    	gameFailed(room1);
+	    	}
+    	}
 
-    		function huffCreate(dataRoom2)
-	    	{
-		    	if (huffleUser < 5) 
+    	function huffCreate(dataRoom2)
+	    {
+		    if (huffleUser < 5) 
+		    {
+		    	var room2 = dataRoom2.house;
+		    	var roomUser = dataRoom2.username;
+		    	socket.join(room2);
+		    	var playingData = {roomUser: roomUser, room: room2};
+		    	updatePlaying(playingData);
+		    	huffleUser = huffleUser + 1;
+		    	checkHuffleUser = huffleUser;
+		    	if (huffleUser == 1) 
 		    	{
-		    		var room2 = dataRoom2.house;
-		    		var roomUser = dataRoom2.username;
-		    		socket.join(room2);
-		    		var playingData = {roomUser: roomUser, room: room2};
-		    		updatePlaying(playingData);
-		    		huffleUser = huffleUser + 1;
-		    		checkHuffleUser = huffleUser;
-		    		if (huffleUser == 1) 
-		    		{
-			    		setInterval(function()
+			    	setInterval(function()
 					{
 						huffCounter(room2);
 					},1000);
-		    		}
 		    	}
-		    	else
-		    	{
-		    		gameFailed(room2);
-		    	}
+		    }
+		    else
+		    {
+		    	gameFailed(room2);
+		    }
 		}
 
 		function slythCreate(dataRoom3)
-	    	{
-		    	if (slythUser < 5) 
-		    	{
-		    		var room3 = dataRoom3.house;
-		    		var roomUser = dataRoom3.username;
-		    		socket.join(room3);
-		    		var playingDate = {roomUser: roomUser, room: room3};
-		    		updatePlaying(playingDate);
-		    		slythUser = slythUser + 1;
-		    		checkSlythUser = slythUser;
-		    		if (slythUser == 1) 
-		    		{
-			    		setInterval(function()
+	    {
+		    if (slythUser < 5) 
+		    {
+		    	var room3 = dataRoom3.house;
+		    	var roomUser = dataRoom3.username;
+		    	socket.join(room3);
+		    	var playingDate = {roomUser: roomUser, room: room3};
+		    	updatePlaying(playingDate);
+				slythUser = slythUser + 1;
+				checkSlythUser = slythUser;
+				if (slythUser == 1) 
+				{
+					setInterval(function()
 					{
 						slythCounter(room3);
 					},1000);    		
-	    			}
-	    		}
-	    		else
-	    		{
-		    		gameFailed(room3);
-		    	}
+				}
+			}
+			else
+			{
+				gameFailed(room3);
+			}
 		}
 
 		function ravenCreate(dataRoom4)
-	    	{
-		    	if (ravenUser < 5) 
+	    {
+		    if (ravenUser < 5) 
+		    {
+		    	var room4 = dataRoom4.house;
+		    	var roomUser = dataRoom4.username;
+		    	socket.join(room4);
+		    	var playingData = {roomUser: roomUser, room: room4};
+		    	updatePlaying(playingData);
+		    	ravenUser = ravenUser + 1;
+		    	checkRavenUser = ravenUser;
+		    	if (ravenUser == 1) 
 		    	{
-		    		var room4 = dataRoom4.house;
-		    		var roomUser = dataRoom4.username;
-		    		socket.join(room4);
-		    		var playingData = {roomUser: roomUser, room: room4};
-		    		updatePlaying(playingData);
-		    		ravenUser = ravenUser + 1;
-		    		checkRavenUser = ravenUser;
-		    		if (ravenUser == 1) 
-		    		{
-	    				setInterval(function()
+	    			setInterval(function()
 					{
-		    				ravenCounter(room4);
+		    			ravenCounter(room4);
 					},1000);
 				}
 			}
@@ -563,7 +563,8 @@
 
 	app.get('/signup/:username', function(req, res){
 		var username = req.params.username;
-		connection.query("INSERT INTO users(username) VALUES (?)", [username], function(err, rows, fields){
+		connection.query("INSERT INTO users(username) VALUES (?)", [username], function(err, rows, fields)
+		{
 			var result = rows.affectedRows;
 			if (!err) 
 			{
@@ -585,7 +586,8 @@
 		});
 	});
 
-	app.post('/validateInput', function(req, res){
+	app.post('/validateInput', function(req, res)
+	{
 		var username = {username: req.body.username};
 		connection.query("SELECT * FROM users WHERE ?", username, function(err, rows, fields)
 		{
@@ -611,7 +613,8 @@
 
 	});
 
-	app.post('/validateAdminInput', function(req, res){
+	app.post('/validateAdminInput', function(req, res)
+	{
 		var username = req.body.username;
 		var password = md5(req.body.password);
 		adminConnection.query("SELECT * FROM admin WHERE username = ? AND password = ?", [username, password], function(err, rows, fields)
@@ -631,7 +634,8 @@
 
 	});
 
-	app.get('/main', function(req, res){
+	app.get('/main', function(req, res)
+	{
 		if (req.session.admindata) 
 		{
 			res.sendFile(__dirname + '/public/views/main.html')
@@ -642,7 +646,8 @@
 		}
 	});
 
-	app.get('/playing', function(req, res){
+	app.get('/playing', function(req, res)
+	{
 		if (req.session.admindata) 
 		{
 			res.sendFile(__dirname + '/public/views/playing.html')	
@@ -654,7 +659,8 @@
 		
 	});
 
-	app.get('/getUsers', function(req, res){
+	app.get('/getUsers', function(req, res)
+	{
 		connection.query("SELECT * FROM users", function(err, rows, fields)
 		{
 			var result = rows.length;
@@ -670,7 +676,8 @@
 		});
 	});
 
-	app.get('/getPlayers', function(req, res){
+	app.get('/getPlayers', function(req, res)
+	{
 		connection.query("SELECT * FROM playing", function(err, rows, fields)
 		{
 			var result = rows.length;
@@ -686,7 +693,8 @@
 		});
 	});
 
-	app.get('/logout', function(req, res){
+	app.get('/logout', function(req, res)
+	{
 		req.session.destroy();
 		req.logout();
 		req.session = null;
@@ -762,11 +770,10 @@
 	{
 		var today = new Date();
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-		console.log(date);
-
 	});
 
-	app.get('/leaveRoom', function(req, res){
+	app.get('/leaveRoom', function(req, res)
+	{
 		req.session.destroy();
 		req.session = null;
 		res.json("DONE");
