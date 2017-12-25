@@ -83,9 +83,9 @@
 	{
 		socket.on('login', function(username){ login(username) });
 		socket.on('bann', function(id){ bann(id) });
-    	socket.on('reset', function(resetHouse){ reset(resetHouse) });
-    	socket.on('week', function(username){ week(username) });
-    	socket.on('month', function(username){ month(username) });
+		socket.on('reset', function(resetHouse){ reset(resetHouse) });
+		socket.on('week', function(username){ week(username) });
+		socket.on('month', function(username){ month(username) });
 		socket.on('gryfCreate', function(dataRoom1){ gryfCreate(dataRoom1) });
 		socket.on('huffCreate', function(dataRoom2){ huffCreate(dataRoom2) });
 		socket.on('slythCreate', function(dataRoom3){ slythCreate(dataRoom3) });
