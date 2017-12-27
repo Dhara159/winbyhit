@@ -121,7 +121,7 @@
 				huffCount = 10;
 				huffleScoreArray = [];
 				checkHuffleUser = 0;
-		    	socket.leave("hufflepuff");
+		    		socket.leave("hufflepuff");
     			}
     			if (resetHouse == "slytherin") 
     			{	
@@ -129,7 +129,7 @@
 				slythCount = 10;
 				slythScoreArray = [];
 				checkSlythUser = 0;
-		    	socket.leave("slytherin");				
+		    		socket.leave("slytherin");				
     			}
     			if (resetHouse == "ravenclaw") 
     			{
