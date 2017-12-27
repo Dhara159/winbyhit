@@ -113,7 +113,7 @@
 		    		gryfCount = 10;
 		    		gryfScoreArray = [];
 		    		checkGryfUser = 0;
-	    			socket.emit('group', '/groups');
+		    		socket.leave("gryffindor");
 	    		}
 	    		if (resetHouse == "hufflepuff") 
 	    		{
@@ -121,7 +121,7 @@
 				huffCount = 10;
 				huffleScoreArray = [];
 				checkHuffleUser = 0;
-    				socket.emit('group', '/groups');	
+		    	socket.leave("hufflepuff");
     			}
     			if (resetHouse == "slytherin") 
     			{	
@@ -129,7 +129,7 @@
 				slythCount = 10;
 				slythScoreArray = [];
 				checkSlythUser = 0;
-    				socket.emit('group', '/groups');
+		    	socket.leave("slytherin");				
     			}
     			if (resetHouse == "ravenclaw") 
     			{
@@ -137,8 +137,9 @@
 				ravenCount = 10;
 				ravenScoreArray = [];
 				checkRavenUser = 0;
-	    			socket.emit('group', '/groups');
+				socket.leave("ravenclaw");
 	    		}
+	    		socket.emit('group', '/groups');
 		}
 
 		function week(username)
@@ -757,6 +758,7 @@
 
 	app.get('/leaveRoom', function(req, res)
 	{
+		socket.leave(req.body.houseName);
 		req.session.destroy();
 		res.json("DONE");
 	});

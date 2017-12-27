@@ -83,10 +83,13 @@
 
   	$('#leave').click(function()
   	{
+  		var data = {};
+  		data.houseName = "gryffindor";
   		$.ajax({
-  			type: 'get',
+  			type: 'post',
   			url: '/leaveRoom',
-  			success: function(data)
+  			data: data,
+  			success: function(other)
   			{
   				window.location.href = "/";
   			}
