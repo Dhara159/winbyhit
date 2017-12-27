@@ -17,7 +17,12 @@
 					}
 					else
 					{
-						window.location.href = '/signup/'+username;
+						socket.emit("signup", username);
+						socket.on('afterSignUp', function(afterSignUpMsg)
+						{
+							alert(afterSignUpMsg);
+							window.location.href = '/';
+						});
 					}
 				}
 			});
