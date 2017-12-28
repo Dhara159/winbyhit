@@ -758,7 +758,7 @@
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	});
 
-	app.get('/leaveRoom', function(req, res)
+	app.post('/leaveRoom', function(req, res)
 	{
 		req.session.destroy();
 		res.json("DONE");
