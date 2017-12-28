@@ -405,6 +405,8 @@
 			{
 				if (gryfUser <= 1) 
 				{
+					gryfCount = 10;
+					gryfUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["gryffindor"], function(err, rows, fields)
 					{
 					});
@@ -430,6 +432,8 @@
 			{
 				if (huffleUser <= 1) 
 				{
+					huffCount = 10;
+					huffleUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["hufflepuff"], function(err, rows, fields)
 					{
 					});
@@ -454,6 +458,8 @@
 			{
 				if (slythUser <= 1) 
 				{
+					slythCount = 10;
+					slythUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["slytherin"], function(err, rows, fields)
 					{
 					})
@@ -479,6 +485,8 @@
 			{
 				if (ravenUser <= 1) 
 				{
+					ravenCount = 10;
+					ravenUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["ravenclaw"], function(err, rows, fields)
 					{
 					})
