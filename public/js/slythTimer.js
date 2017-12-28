@@ -1,4 +1,10 @@
+	
 	var delayInMilliseconds = 2000;
+	var modal = document.getElementById('myModal');
+	var modal1 = document.getElementById('myModal1');
+	var btn = document.getElementsByClassName("common");
+	var span = document.getElementsByClassName("close")[0];
+	var span1 = document.getElementsByClassName("close")[1];
 	var hit = 0;
 
 	$('#hit').click(function() 
@@ -39,12 +45,6 @@
 		});
 	});
 
-	var modal = document.getElementById('myModal');
-	var modal1 = document.getElementById('myModal1');
-	var btn = document.getElementsByClassName("common");
-	var span = document.getElementsByClassName("close")[0];
-	var span1 = document.getElementsByClassName("close")[1];
-
 	setTimeout(function() 
 	{
 		var seconds_left = 15;
@@ -53,23 +53,13 @@
 			document.getElementById('timer').innerHTML = --seconds_left;
 			if (seconds_left <= 0)
 			{
-	       		// document.getElementById('timer').innerHTML = "Time's up!";
 	       		clearInterval(interval);
-	       		console.log(hit);
-	       		$('#hit').attr("disabled", true);
-	       		$('#score').html(hit);
-	       		modal.style.display = "block";
-	       		$.ajax(
-	       		{
-	       			type: 'get',
-	       			url: 'getUserName',
-	       			success: function(username) 
-	       			{
-	       				$('#username').val(username);
-	       			}
-	       		});
+  				console.log(hit);
+	  			$('#hit').attr("disabled", true);
+  				$('#score').html(hit);
+  				modal.style.display = "block";
 	       	}
-	       }, 1000);
+	    }, 1000);
 	}, delayInMilliseconds);
 
 	$(span).click(function() 
@@ -93,9 +83,12 @@
 
 	$('#leave').click(function()
   	{
+  		var data = {};
+  		data.houseName = "slytherin";
   		$.ajax({
-  			type: 'get',
+  			type: 'post',
   			url: '/leaveRoom',
+  			data: data,
   			success: function(data)
   			{
   				window.location.href = "/";
@@ -111,8 +104,3 @@
 			window.location.href = group;
 		});
 	});
-
-
-
-
-

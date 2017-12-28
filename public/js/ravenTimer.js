@@ -1,5 +1,10 @@
 	var delayInMilliseconds = 2000;
 	var hit = 0;
+	var modal = document.getElementById('myModal');
+	var modal1 = document.getElementById('myModal1');
+	var btn = document.getElementsByClassName("common");
+	var span = document.getElementsByClassName("close")[0];
+	var span1 = document.getElementsByClassName("close")[1];
 
 	$('#hit').click(function() 
 	{
@@ -39,12 +44,6 @@
 		});
 	});
 
-	var modal = document.getElementById('myModal');
-	var modal1 = document.getElementById('myModal1');
-	var btn = document.getElementsByClassName("common");
-	var span = document.getElementsByClassName("close")[0];
-	var span1 = document.getElementsByClassName("close")[1];
-
 	setTimeout(function() 
 	{
 		var seconds_left = 15;
@@ -83,9 +82,12 @@
 
 	$('#leave').click(function()
   	{
+  		var data = {};
+  		data.houseName = "hufflepuff";
   		$.ajax({
-  			type: 'get',
+  			type: 'post',
   			url: '/leaveRoom',
+  			data: data,
   			success: function(data)
   			{
   				window.location.href = "/";
@@ -101,7 +103,3 @@
 			window.location.href = group;
 		});
 	});
-
-
-
-

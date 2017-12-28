@@ -82,9 +82,12 @@
 
 	$('#leave').click(function()
   	{
+  		var data = {};
+  		data.houseName = "hufflepuff";
   		$.ajax({
-  			type: 'get',
+  			type: 'post',
   			url: '/leaveRoom',
+  			data: data,
   			success: function(data)
   			{
   				window.location.href = "/";
@@ -100,6 +103,3 @@
 			window.location.href = group;
 		});
 	});
-
-
-
