@@ -760,7 +760,6 @@
 
 	app.get('/leaveRoom', function(req, res)
 	{
-		socket.leave(req.body.houseName);
 		req.session.destroy();
 		res.json("DONE");
 	});
