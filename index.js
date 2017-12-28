@@ -210,9 +210,10 @@
 				checkGryfUser = gryfUser;
     				if (gryfUser == 1) 
     				{
-				    	setInterval(function()
+				    	var gryfInterval = setInterval(function()
 					{
-						gryfCounter(room1);
+						var createData = {room: room1, interval: gryfInterval};
+						gryfCounter(createData);
 					},1000);
     				}
     			}    	
@@ -235,9 +236,10 @@
 			    	checkHuffleUser = huffleUser;
 			    	if (huffleUser == 1) 
 			    	{
-				    	setInterval(function()
+				    	var huffleInterval = setInterval(function()
 					{
-						huffCounter(room2);
+						var createData = {room: room2, interval: huffleInterval};
+						huffCounter(createData);
 					},1000);
 		    		}
 		    	}
@@ -260,9 +262,10 @@
 				checkSlythUser = slythUser;
 				if (slythUser == 1) 
 				{
-					setInterval(function()
+					var slythInterval = setInterval(function()
 					{
-						slythCounter(room3);
+						var createData = {room: room3, interval: slythInterval};
+						slythCounter(createData);
 					},1000);    		
 				}
 			}
@@ -285,9 +288,10 @@
 			    	checkRavenUser = ravenUser;
 			    	if (ravenUser == 1) 
 			    	{
-		    			setInterval(function()
+		    			var ravenInterval = setInterval(function()
 					{
-		    				ravenCounter(room4);
+							var createData = {room: room4, interval: ravenInterval};
+		    				ravenCounter(createData);
 					},1000);
 				}
 			}
@@ -394,12 +398,12 @@
 			}
 		}
 
-		function gryfCounter(room1)
+		function gryfCounter(createData)
 		{	
 			if(gryfCount > 0)
 			{
 				gryfCount--;
-				io.in(room1).emit('seconds', gryfCount);
+				io.in(createData.room).emit('seconds', gryfCount);
 			}
 			else
 			{
@@ -410,23 +414,25 @@
 					connection.query("DELETE from playing WHERE house = ?",["gryffindor"], function(err, rows, fields)
 					{
 					});
-					gameFailed(room1);
+					clearInterval(createData.interval);
+					gameFailed(createData.room);
 				}
 				else
 				{
+					clearInterval(createData.interval);
 					var destination = '/gryffindor';
-					io.in(room1).emit('redirect', destination);	
+					io.in(createData.room).emit('redirect', destination);	
 				}
 				
 			}
 		}
 
-		function huffCounter(room2)
+		function huffCounter(createData)
 		{	
 			if(huffCount > 0)
 			{
 					huffCount--;
-				io.in(room2).emit('seconds', huffCount);
+				io.in(createData.room).emit('seconds', huffCount);
 			}
 			else
 			{
@@ -437,22 +443,24 @@
 					connection.query("DELETE from playing WHERE house = ?",["hufflepuff"], function(err, rows, fields)
 					{
 					});
-					gameFailed(room2);
+					clearInterval(createData.interval);
+					gameFailed(createData.room);
 				}
 				else
 				{
+					clearInterval(createData.interval);
 					var destination = '/hufflepuff';
-					io.in(room2).emit('redirect', destination);
+					io.in(createData.room).emit('redirect', destination);
 				}
 			}
 		}
 
-		function slythCounter(room3)
+		function slythCounter(createData)
 		{	
 			if(slythCount > 0)
 			{
 				slythCount--;
-				io.in(room3).emit('seconds', slythCount);
+				io.in(createData.room).emit('seconds', slythCount);
 			}
 			else
 			{
@@ -463,23 +471,25 @@
 					connection.query("DELETE from playing WHERE house = ?",["slytherin"], function(err, rows, fields)
 					{
 					})
-					gameFailed(room3);
+					clearInterval(createData.interval);
+					gameFailed(createData.room);
 				}
 				else
 				{
+					clearInterval(createData.interval);
 					var destination = '/slytherin';
-					io.in(room3).emit('redirect', destination);
+					io.in(createData.room).emit('redirect', destination);
 				}
 			}
 			
 		}
 
-		function ravenCounter(room4)
+		function ravenCounter(createData)
 		{	
 			if(ravenCount > 0)
 			{
 				ravenCount--;
-				io.in(room4).emit('seconds', ravenCount);
+				io.in(createData.room).emit('seconds', ravenCount);
 			}
 			else
 			{
@@ -490,12 +500,14 @@
 					connection.query("DELETE from playing WHERE house = ?",["ravenclaw"], function(err, rows, fields)
 					{
 					})
-					gameFailed(room4);
+					clearInterval(createData.interval);
+					gameFailed(createData.room);
 				}
 				else
 				{
+					clearInterval(createData.interval);
 					var destination = '/ravenclaw';
-					io.in(room4).emit('redirect', destination);
+					io.in(createData.room).emit('redirect', destination);
 				}
 			}
 			
