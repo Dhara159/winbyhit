@@ -1,4 +1,5 @@
   	var socket = io.connect('https://secret-sands-26285.herokuapp.com');
+  	
   	var hit = 0;
   	var modal = document.getElementById('myModal');
   	var modal1 = document.getElementById('myModal1');
@@ -45,20 +46,6 @@
   		});
   	});
 
-  	$(span).click(function() 
-  	{
-	  	modal.style.display = "none";
-	  	var submitScore = { username: $('#username').val(), score: hit, room: 'gryffindor'};
-	  	socket.emit('submitScore', submitScore);
-
-  		socket.on('gryfWinner', function(winner)
-  		{
-	  		$('#winner').html("The winner is: " + winner.winUser);
-  			$('#winningScore').html("Score: " + winner.maxScore);
-  			modal1.style.display = "block";
-  		});
-  	});
-
   	$(span1).click(function() 
   	{
   		modal1.style.display = "none";
@@ -98,4 +85,17 @@
   		$('#hit').attr("disabled", true);
   		$('#score').html(hit);
   		modal.style.display = "block";
+  		setTimeout(function()
+  		{
+  			modal.style.display = "none";
+  			var submitScore = { username: $('#username').val(), score: hit, room: 'gryffindor'};
+	  		socket.emit('submitScore', submitScore);
+  		}, 1000);
+  	});
+
+  	socket.on('gryfWinner', function(winner)
+  	{
+		$('#winner').html("The winner is: " + winner.winUser);
+  		$('#winningScore').html("Score: " + winner.maxScore);
+  		modal1.style.display = "block";
   	});

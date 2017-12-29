@@ -149,6 +149,8 @@
 		    		gryfCount = 10;
 		    		gryfScoreArray = [];
 		    		checkGryfUser = 0;
+		    		addedGryfUser = 0;
+					joinedGryf = 0;
 		    		socket.leave("gryffindor");
 	    		}
 	    		if (resetHouse == "hufflepuff") 
@@ -157,6 +159,8 @@
 				huffCount = 10;
 				huffleScoreArray = [];
 				checkHuffleUser = 0;
+					addedHuffleUser = 0;
+					joinedHuffle = 0;
 		    		socket.leave("hufflepuff");
     			}
     			if (resetHouse == "slytherin") 
@@ -165,6 +169,8 @@
 				slythCount = 10;
 				slythScoreArray = [];
 				checkSlythUser = 0;
+					addedSlythUser = 0;
+					joinedSlyth = 0;
 		    		socket.leave("slytherin");				
     			}
     			if (resetHouse == "ravenclaw") 
@@ -173,6 +179,8 @@
 				ravenCount = 10;
 				ravenScoreArray = [];
 				checkRavenUser = 0;
+					addedRavenUser = 0;
+					joinedRaven = 0;
 				socket.leave("ravenclaw");
 	    		}
 	    		socket.emit('group', '/groups');
@@ -509,6 +517,8 @@
 				{
 					gryfCount = 10;
 					gryfUser = 0;
+					addedGryfUser = 0;
+					joinedGryf = 0;
 					connection.query("DELETE from playing WHERE house = ?",["gryffindor"], function(err, rows, fields)
 					{
 					});
@@ -536,6 +546,8 @@
 			{
 				if (huffleUser <= 1) 
 				{
+					addedHuffleUser = 0;
+					joinedHuffle = 0;
 					huffCount = 10;
 					huffleUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["hufflepuff"], function(err, rows, fields)
@@ -564,6 +576,8 @@
 			{
 				if (slythUser <= 1) 
 				{
+					addedSlythUser = 0;
+					joinedSlyth = 0;
 					slythCount = 10;
 					slythUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["slytherin"], function(err, rows, fields)
@@ -593,6 +607,8 @@
 			{
 				if (ravenUser <= 1) 
 				{
+					addedRavenUser = 0;
+					joinedRaven = 0;
 					ravenCount = 10;
 					ravenUser = 0;
 					connection.query("DELETE from playing WHERE house = ?",["ravenclaw"], function(err, rows, fields)

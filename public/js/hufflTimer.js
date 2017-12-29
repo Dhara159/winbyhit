@@ -45,20 +45,6 @@
 		});
 	});
 
-	$(span).click(function() 
-	{
-		modal.style.display = "none";
-		var submitScore = { username: $('#username').val(), score: hit, room: 'hufflepuff'};
-		socket.emit('submitScore', submitScore);
-
-		socket.on('huffleWinner', function(winner)
-		{
-			$('#winner').html("The winner is: " + winner.winUser);
-			$('#winningScore').html("Score: " + winner.maxScore);
-			modal1.style.display = "block";
-		});
-	});
-
 	$(span1).click(function() 
 	{
 		modal1.style.display = "none";
@@ -93,9 +79,22 @@
   		document.getElementById('timer').innerHTML = seconds_left;
   	});
 
-  	socket.on('timeOut', function(done)
-  	{
-  		$('#hit').attr("disabled", true);
-  		$('#score').html(hit);
-  		modal.style.display = "block";
-  	});
+	  	socket.on('timeOut', function(done)
+	  	{
+	  		$('#hit').attr("disabled", true);
+	  		$('#score').html(hit);
+	  		modal.style.display = "block";
+	  		setTimeout(function()
+	  		{
+	  			modal.style.display = "none";
+	  			var submitScore = { username: $('#username').val(), score: hit, room: 'hufflepuff'};
+		  		socket.emit('submitScore', submitScore);
+	  		}, 1000);
+	  	});
+
+	  	socket.on('huffleWinner', function(winner)
+	  	{
+			$('#winner').html("The winner is: " + winner.winUser);
+	  		$('#winningScore').html("Score: " + winner.maxScore);
+	  		modal1.style.display = "block";
+	  	});
