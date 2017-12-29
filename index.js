@@ -216,7 +216,7 @@
 			    	var playingData = {roomUser: roomUser, room: room1};
 			    	updatePlaying(playingData);
 			    	gryfUser = gryfUser + 1;
-				checkGryfUser = gryfUser;
+				addedGryfUser = checkGryfUser = gryfUser;
     				if (gryfUser == 1) 
     				{
 				    	var gryfInterval = setInterval(function()
@@ -242,7 +242,7 @@
 			    	var playingData = {roomUser: roomUser, room: room2};
 			    	updatePlaying(playingData);
 			    	huffleUser = huffleUser + 1;
-			    	checkHuffleUser = huffleUser;
+			    	addedHuffleUser = checkHuffleUser = huffleUser;
 			    	if (huffleUser == 1) 
 			    	{
 				    	var huffleInterval = setInterval(function()
@@ -268,7 +268,7 @@
 			    	var playingDate = {roomUser: roomUser, room: room3};
 			    	updatePlaying(playingDate);
 				slythUser = slythUser + 1;
-				checkSlythUser = slythUser;
+				addedSlythUser = checkSlythUser = slythUser;
 				if (slythUser == 1) 
 				{
 					var slythInterval = setInterval(function()
@@ -294,7 +294,7 @@
 			    	var playingData = {roomUser: roomUser, room: room4};
 			    	updatePlaying(playingData);
 			    	ravenUser = ravenUser + 1;
-			    	checkRavenUser = ravenUser;
+			    	addedRavenUser = checkRavenUser = ravenUser;
 			    	if (ravenUser == 1) 
 			    	{
 		    			var ravenInterval = setInterval(function()
