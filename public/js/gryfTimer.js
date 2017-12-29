@@ -1,5 +1,4 @@
   	var socket = io.connect('https://secret-sands-26285.herokuapp.com');
-  	var delayInMilliseconds = 2000;
   	var hit = 0;
   	var modal = document.getElementById('myModal');
   	var modal1 = document.getElementById('myModal1');
@@ -14,6 +13,7 @@
 
   	$(document).ready(function()
   	{
+  		socket.emit("reached", "gryffindor");
 	  	$.ajax
 	  	({
   			type: 'get',
@@ -44,23 +44,6 @@
   			$('#navScore').text("SCORE: " + monthScore);
   		});
   	});
-
-  	setTimeout(function() 
-  	{
-	  	var seconds_left = 15;
-	  	var interval = setInterval(function() 
-	  	{
-  			document.getElementById('timer').innerHTML = --seconds_left;
-  			if (seconds_left <= 0)
-  			{
-  				clearInterval(interval);
-  				console.log(hit);
-	  			$('#hit').attr("disabled", true);
-  				$('#score').html(hit);
-  				modal.style.display = "block";
-        	}
-    	}, 1000);
-  	}, delayInMilliseconds);
 
   	$(span).click(function() 
   	{
@@ -105,8 +88,14 @@
   		});
   	});
 
+  	socket.on('timer', function(seconds_left)
+  	{
+  		document.getElementById('timer').innerHTML = seconds_left;
+  	});
 
-
-
-
-
+  	socket.on('timeOut', function(done)
+  	{
+  		$('#hit').attr("disabled", true);
+  		$('#score').html(hit);
+  		modal.style.display = "block";
+  	});

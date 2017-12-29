@@ -15,6 +15,14 @@
 	var checkHuffleUser = 0;
 	var checkRavenUser = 0;
 	var checkSlythUser = 0;
+	var addedGryfUser = 0;
+	var addedHuffleUser = 0;
+	var addedSlythUser = 0;
+	var addedRavenUser = 0;
+	var joinedGryf = 0;
+	var joinedHuffle = 0;
+	var joinedSlyth = 0;
+	var joinedRaven = 0;
 	var express = require('express');
 	var app = express();
 	var http = require('http').Server(app);
@@ -74,6 +82,7 @@
 		socket.on('huffCreate', function(dataRoom2){ huffCreate(dataRoom2) });
 		socket.on('slythCreate', function(dataRoom3){ slythCreate(dataRoom3) });
 		socket.on('ravenCreate', function(dataRoom4){ ravenCreate(dataRoom4) });
+		socket.on('reached', function(reachedRoom){ reached(reachedRoom) });
 		socket.on('submitScore', function(submitData){ submitScore(submitData) });
 		socket.on('disconnect', function(leaveData){ leaveGame(leaveData) });
 
@@ -301,6 +310,99 @@
 			}
 		}
 
+		function reached(reachedRoom)
+		{
+			switch(reachedRoom)
+			{
+				case "gryffindor":
+					joinedGryf = joinedGryf + 1;
+					socket.join(reachedRoom);
+					if (joinedGryf == addedGryfUser) 
+					{
+						setTimeout(function() 
+  						{
+	  						var seconds_left = 15;
+	  						var interval = setInterval(function() 
+	  						{
+	  							io.in(reachedRoom).emit('timer', --seconds_left);
+  								if (seconds_left <= 0)
+  								{
+  									clearInterval(interval);
+  									io.in(reachedRoom).emit('timeOut', "data");
+        						}
+    						}, 1000);
+  						}, 2000);
+					}
+					break;
+
+				case "hufflepuff":
+					joinedHuffle = joinedHuffle + 1;
+					socket.join(reachedRoom);
+					if (joinedHuffle == addedHuffleUser) 
+					{
+						setTimeout(function() 
+  						{
+	  						var seconds_left = 15;
+	  						var interval = setInterval(function() 
+	  						{
+	  							io.in(reachedRoom).emit('timer', --seconds_left);
+  								if (seconds_left <= 0)
+  								{
+  									clearInterval(interval);
+  									io.in(reachedRoom).emit('timeOut', "data");
+        						}
+    						}, 1000);
+  						}, 2000);
+					}
+					break;
+
+				case "slytherin":
+					joinedSlyth = joinedSlyth + 1;
+					socket.join(reachedRoom);
+					if (joinedSlyth == addedSlythUser) 
+					{
+						setTimeout(function() 
+  						{
+	  						var seconds_left = 15;
+	  						var interval = setInterval(function() 
+	  						{
+	  							io.in(reachedRoom).emit('timer', --seconds_left);
+  								if (seconds_left <= 0)
+  								{
+  									clearInterval(interval);
+  									io.in(reachedRoom).emit('timeOut', "data");
+        						}
+    						}, 1000);
+  						}, 2000);
+					}
+					break;
+
+				case "ravenclaw":
+					joinedRaven = joinedRaven + 1;
+					socket.join(reachedRoom);
+					if (joinedRaven == addedRavenUser) 
+					{
+						setTimeout(function() 
+  						{
+	  						var seconds_left = 15;
+	  						var interval = setInterval(function() 
+	  						{
+	  							io.in(reachedRoom).emit('timer', --seconds_left);
+  								if (seconds_left <= 0)
+  								{
+  									clearInterval(interval);
+  									io.in(reachedRoom).emit('timeOut', "data");
+        						}
+    						}, 1000);
+  						}, 2000);
+					}
+					break;
+
+				default:
+					io.in(reachedRoom).emit('timeOut', "data");
+			}
+		}
+
 		function updatePlaying(playingData)
 		{	
 			var username = {username: playingData.roomUser};
@@ -324,7 +426,6 @@
 			{
 				gryfScoreArray[user] = score;
 				checkGryfUser --;
-				socket.join(room);
 				if (checkGryfUser == 0)
 				{					
 					for(var index in gryfScoreArray) 
@@ -343,7 +444,6 @@
 			{
 				huffleScoreArray[user] = score;
 				checkHuffleUser --;
-				socket.join(room);
 				if (checkHuffleUser == 0) 
 				{
 					for(var index in huffleScoreArray) 
@@ -362,7 +462,6 @@
 			{
 				slythScoreArray[user] = score;
 				checkSlythUser --;
-				socket.join(room);
 				if (checkSlythUser == 0) 
 				{
 					for(var index in slythScoreArray) 
@@ -381,7 +480,6 @@
 			{
 				ravenScoreArray[user] = score;
 				checkRavenUser --;
-				socket.join(room);
 				if (checkRavenUser == 0) 
 				{
 					for(var index in ravenScoreArray) 
