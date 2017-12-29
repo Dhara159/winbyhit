@@ -2,7 +2,6 @@
 	var modal = document.getElementById('myModal');
 	var modal1 = document.getElementById('myModal1');
 	var btn = document.getElementsByClassName("common");
-	var span = document.getElementsByClassName("close")[0];
 	$(document).ready(function()
 	{
 		$.ajax
@@ -43,19 +42,6 @@
 	$('.common').click(function() 
 	{
 		modal.style.display = "block";
-	});
-
-	$(span).click(function() 
-	{
-		modal.style.display = "none";
-	});
-
-	$(window).click(function(event) 
-	{
-		if (event.target == modal) 
-		{
-			modal.style.display = "none"; 
-		}
 	});
 
 	socket.on("seconds", function(count) 
