@@ -26,24 +26,6 @@
   		});
   	});
 
-  	$('week').click(function()
-  	{
-	  	socket.emit('week', $('#username').val());
-	  	socket.on('setWeekScore', function(WeekScore)
-	  	{
-  			$('#navScore').text("SCORE: " + WeekScore);
-  		});
-  	});
-
-  	$('month').click(function()
-  	{
-	  	socket.emit('month', $('#username').val());
-	  	socket.on('setMonthScore', function(monthScore)
-	  	{
-  			$('#navScore').text("SCORE: " + monthScore);
-  		});
-  	});
-
   	$('#leave').click(function()
   	{
   		var data = {};
