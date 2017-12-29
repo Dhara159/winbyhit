@@ -59,7 +59,7 @@
 		window.location.href = destination;
 	});
 
-	$('week').click(function()
+	$('#week').click(function()
 	{
 		socket.emit('week', $('#username').val());
 		socket.on('setWeekScore', function(WeekScore)
@@ -68,7 +68,7 @@
 		});
 	});
 
-	$('month').click(function()
+	$('#month').click(function()
 	{
 		socket.emit('month', $('#username').val());
 		socket.on('setMonthScore', function(monthScore)

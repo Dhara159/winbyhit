@@ -190,11 +190,11 @@
     		{
     			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-			var weekday = today.setDate(today.getDate() - 7);
+			var weekday = today.setDate(today.getDate() - 6);
 			var oldday = new Date(weekday);
 			var weekdate = oldday.getFullYear()+'-'+(oldday.getMonth()+1)+'-'+oldday.getDate();
 			var sessionUser = username;
-			connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, weekdate, weekday], function(err, rows, fields)
+			connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, weekdate.toString(), date.toString()], function(err, rows, fields)
 			{
 				socket.emit('setWeekScore', rows[0].total);
 			});
@@ -204,11 +204,11 @@
 		{
 			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-			var weekday = today.setMonth(today.getDate() - 30);
-			var oldday = new Date(weekday);
-			var weekdate = oldday.getFullYear()+'-'+(oldday.getMonth()+1)+'-'+oldday.getDate();
+			var monthday = today.setDate(today.getDate() - 30);
+			var oldmonth = new Date(monthday);
+			var monthdate = oldmonth.getFullYear()+'-'+(oldmonth.getMonth()+1)+'-'+oldmonth.getDate();
 			var sessionUser = username;
-			connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, weekdate, weekday], function(err, rows, fields)
+			connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, monthdate.toString(), date.toString()], function(err, rows, fields)
 			{
 				socket.emit('setMonthScore', rows[0].total);
 			});	
@@ -634,7 +634,7 @@
 			var username = {username: updateScore.winUser};
 			var today = new Date();
 			var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-			var weekday = today.setDate(today.getDate() - 7);
+			var weekday = today.setDate(today.getDate() - 6);
 			var oldday = new Date(weekday);
 			var weekdate = oldday.getFullYear()+'-'+(oldday.getMonth()+1)+'-'+oldday.getDate();
 			var monthday = today.setDate(today.getDate() - 30);
@@ -768,7 +768,7 @@
 
 	app.get('/playing', function(req, res)
 	{
-		if (req.session.admindata != "")  
+		if (req.session.admindata != "") 
 		{
 			res.sendFile(__dirname + '/public/views/playing.html')	
 		}
@@ -856,11 +856,11 @@
 	{
 		var today = new Date();
 		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-		var weekday = today.setDate(today.getDate() - 7);
+		var weekday = today.setDate(today.getDate() - 6);
 		var oldday = new Date(weekday);
 		var weekdate = oldday.getFullYear()+'-'+(oldday.getMonth()+1)+'-'+oldday.getDate();
 		var sessionUser = req.session.username;
-		connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, weekdate, weekday], function(err, rows, fields)
+		connection.query("SELECT sum(score) as total FROM score_log WHERE username = ? AND dateRecord >= ? AND dateRecord <= ?", [sessionUser, weekdate.toString(), date.toString()], function(err, rows, fields)
 		{
 			var navData = {sessionUser: sessionUser, weekly: rows[0].total}
 			res.json(navData);
