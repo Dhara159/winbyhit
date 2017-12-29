@@ -742,8 +742,8 @@
 			var result = rows.length;
 			if (result != 0) 
 			{
-				res.send("YES");	
 				req.session.admindata = "set";
+				res.send("YES");	
 			}
 			else
 			{
