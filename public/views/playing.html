@@ -44,15 +44,18 @@
 					url: '/getPlayers',
 					success: function(data) 
 					{
-						var tr;
-						for (var i = 0; i < data.length; i++) 
+						if (data != "NO") 
 						{
-							tr = $('<tr/>');
-							tr.append("<td>" + data[i].id + "</td>");
-							tr.append("<td>" + data[i].username + "</td>");
-							tr.append("<td>" + data[i].fid + "</td>");
-							tr.append("<td>" + data[i].house + "</td>");
-							$('table').append(tr);
+							var tr;
+							for (var i = 0; i < data.length; i++) 
+							{
+								tr = $('<tr/>');
+								tr.append("<td>" + data[i].id + "</td>");
+								tr.append("<td>" + data[i].username + "</td>");
+								tr.append("<td>" + data[i].fid + "</td>");
+								tr.append("<td>" + data[i].house + "</td>");
+								$('table').append(tr);
+							}
 						}
 					}
 				});
