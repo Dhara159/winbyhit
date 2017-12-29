@@ -4,8 +4,6 @@
   	var modal = document.getElementById('myModal');
   	var modal1 = document.getElementById('myModal1');
   	var btn = document.getElementsByClassName("common");
-  	var span = document.getElementsByClassName("close")[0];
-  	var span1 = document.getElementsByClassName("close")[1];
 
   	$('#hit').click(function() 
   	{
@@ -44,11 +42,6 @@
 	  	{
   			$('#navScore').text("SCORE: " + monthScore);
   		});
-  	});
-
-  	$(span1).click(function() 
-  	{
-  		modal1.style.display = "none";
   	});
 
   	$('#leave').click(function()
