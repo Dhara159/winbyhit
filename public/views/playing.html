@@ -63,10 +63,14 @@
 
 			$('#logout').click(function()
 			{
-				socket.emit('logout', '');
-				socket.on('back', function(back)
-				{
-					window.location.href = back;
+				$.ajax
+				({
+					type: 'get',
+					url: '/logout',
+					success: function(data) 
+					{
+						window.location.href = '/adminlogin';
+					}
 				});
 			});
 

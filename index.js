@@ -756,7 +756,7 @@
 
 	app.get('/main', function(req, res)
 	{
-		if (req.session.admindata) 
+		if (req.session.admindata != "") 
 		{
 			res.sendFile(__dirname + '/public/views/main.html')
 		}
@@ -768,7 +768,7 @@
 
 	app.get('/playing', function(req, res)
 	{
-		if (req.session.admindata) 
+		if (req.session.admindata != "")  
 		{
 			res.sendFile(__dirname + '/public/views/playing.html')	
 		}
@@ -815,9 +815,7 @@
 
 	app.get('/logout', function(req, res)
 	{
-		req.session.destroy();
-		req.logout();
-		req.session = null;
+		req.session.admindata = "";
 		res.send("success");
 	});
 
